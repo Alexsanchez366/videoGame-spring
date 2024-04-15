@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    
+    //primero se crea un formato de lo que nececito ver sin tenr logica solo el html estatico 
+    
+
+<nav class="navbar bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">tiendo jv</a>
+        
+        <form th:action="@{/buscar}" class="d-flex" role="search">
+            <input name="q" autofocus="autofocus" class="form-control me-2" type="search" th:placeholder="${param.q}" aria-label="buscar">
+        <button class="btn btn-outline-success" type="submit">buscar</button>
+      </form>
+    </div>
+    
+</nav>
+
+
+<div class="conteiner mt-4">
+    
+    <div class="row">
+        <div class="col col-md-12 text-right mb-4">
+            <a th:href="@{/videojuego/crear}" class="btn btn-outline-success">Crear videojuegos</a>
+            
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <!-- PASO 5 EMPESAR A LLAMAR LOS DATOS POR TH: TEX   ETC..
+        PRIMERO GUARDARLOS EN MEMORIA OSEA EN EL SERVER PARA VERIFICAR QUE TODO ESTE BIEN -->
+        
+        <div th:each="juego : ${videojuego}" class="col-md-3">
+
+            <div class="card" style="width: 18rem;">
+                <img th:src="${juego.imagen_Url}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 th:text="${juego.nombre}" class="card-title"> </h5>
+                    <p>
+                        <a th:href="@{/videojuegosporDistribuidor(distribuidor_id=${juego.distribuidor.id})}" class="badge text-bg-warning" th:text="${juego.distribuidor.nombre}"></a>
+                    </p>
+                    <p th:text="${juego.descripcion}" class="card-text"> </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
